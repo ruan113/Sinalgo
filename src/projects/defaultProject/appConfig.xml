@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sinalgo>
 	<ProjectSelector windowWidth="800" windowHeight="681" lastChosenProject="leach_c" windowPosX="204" windowPosY="202" isMaximized="false" selectedTab="3" />
-	<GUI windowWidth="1121" windowHeight="1056" windowPosX="65" windowPosY="24" isMaximized="true" ControlPanelExpandSimulation="true" ControlPanelShowFullViewPanel="false" ControlPanelShowTextPanel="true" ControlPanelShowProjectControl="true" RunOperationIsLimited="false" helpWindowWidth="500" helpWindowHeight="500" helpWindowPosX="200" helpWindowPosY="200" helpWindowIsMaximized="false" />
-	<RandomSeed seedFromPreviousRun="1581653080857519365" />
-	<App lastSelectedFileDirectory="/home/ruan/sinalgo/src/projects/leach/" checkForUpdatesAtStartup="false" updateCheckTimeStamp="0" runCmdLineArgs="" />
-	<GenNodesDlg numNodes="1" />
+	<GUI windowWidth="1121" windowHeight="1056" windowPosX="-5" windowPosY="0" isMaximized="true" ControlPanelExpandSimulation="true" ControlPanelShowFullViewPanel="false" ControlPanelShowTextPanel="true" ControlPanelShowProjectControl="true" RunOperationIsLimited="false" helpWindowWidth="500" helpWindowHeight="500" helpWindowPosX="200" helpWindowPosY="200" helpWindowIsMaximized="false" />
+	<RandomSeed seedFromPreviousRun="-4516061400457724444" />
+	<App lastSelectedFileDirectory="D:\Downloads\Sinalgo\src\projects\leach_c\" checkForUpdatesAtStartup="false" updateCheckTimeStamp="0" runCmdLineArgs="" />
+	<GenNodesDlg numNodes="10" />
 </sinalgo>
 

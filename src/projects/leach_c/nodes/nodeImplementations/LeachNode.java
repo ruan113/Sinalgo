@@ -125,12 +125,12 @@ public class LeachNode extends Node {
 		slotTDMA = -1;
 		tamanhoTDMA = -1;
 		bandeira = CustomGlobal.BANDEIRA_LIVRE;
+		
 
 		// Tenta iniciar os Nos como cluster Heads aleatoriamente ao serem criados.
 		if (NUMEROS_DE_CH < NUMEROS_DE_NOS * CustomGlobal.PORCENTAGEM_CH && Math.random() < CustomGlobal.PORCENTAGEM_CH) {
 			transformarNoEmClusterHead();
 		}
-
 	}
 
 	/** Trata as mensagens recebidas. E encaminha para alguma funcao handler* */
@@ -217,10 +217,6 @@ public class LeachNode extends Node {
 
 			// Fica um round como ClusterHead
 			if (getFuncao() == Funcao.ClusterHead) {
-
-				/*if (ultimoRoundComoCH != getRound()) {
-					transformarClusterHeadEmNo();
-				}*/
 				if (Global.currentTime % (CustomGlobal.RODADAS_POR_ROUND / 4) == 0) {
 					transmitirDadosParaEB();
 				}
@@ -408,14 +404,17 @@ public class LeachNode extends Node {
 	 */
 	public void handleMsgDados(MsgDados m, LeachNode ln) {
 		double custo = 0;
+		
+		if(m == null)
+			return;
+		if(ln == null)
+			return;
+		
 		if (estacaoBase != null) {
 			custo = getCustoTransmissao(bufferCH.length() + m.toString().length(), estacaoBase);
 		}
 		if (custo < getEnergiaRestante()) {
 			bufferCH.append("No " + ln.ID + ":'" + m.dados + "'\n");
-			// System.out.println(bufferCH.toString());
-		} else {
-
 		}
 	}
 
@@ -452,7 +451,7 @@ public class LeachNode extends Node {
 		// mais proximo.
 
 		CustomGlobal.myOutput(3, patente + ID + " recebeu uma invitacao para se afiliar ao CH " + ch.ID);
-		System.out.println("recebendo invitacao, nó "+ID);
+		
 		TimerSendMessage tsm;
 
 		if (getClusterHead() == null || !getClusterHead().isVivo()) {

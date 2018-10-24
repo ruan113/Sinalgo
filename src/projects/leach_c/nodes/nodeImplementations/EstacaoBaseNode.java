@@ -107,11 +107,15 @@ public class EstacaoBaseNode extends Node {
 
 		Vector<Candidato> listaEleitos = maisVotados(listNosCandidatos);
 
-		if(listaEleitos.size() == 0)
+		if(listaEleitos.size() <= 0)
 			System.out.println("Erro ao validar os mais votados");
 
 		for(Candidato candidato : listaEleitos) {
-			candidato.node.transformarNoEmClusterHead();
+			if(candidato != null) {
+				candidato.node.transformarNoEmClusterHead();
+			}else {
+				System.out.println("Erro transformar um nó em CH");
+			}
 		}
 
 	}
