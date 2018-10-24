@@ -218,9 +218,9 @@ public class LeachNode extends Node {
 			// Fica um round como ClusterHead
 			if (getFuncao() == Funcao.ClusterHead) {
 
-				if (ultimoRoundComoCH != getRound()) {
+				/*if (ultimoRoundComoCH != getRound()) {
 					transformarClusterHeadEmNo();
-				}
+				}*/
 				if (Global.currentTime % (CustomGlobal.RODADAS_POR_ROUND / 4) == 0) {
 					transmitirDadosParaEB();
 				}
@@ -455,7 +455,7 @@ public class LeachNode extends Node {
 		System.out.println("recebendo invitacao, nó "+ID);
 		TimerSendMessage tsm;
 
-		if (getClusterHead() == null) {
+		if (getClusterHead() == null || !getClusterHead().isVivo()) {
 
 			setClusterHead(ch);
 
@@ -688,7 +688,7 @@ public class LeachNode extends Node {
 	 * Funcao que transforma um Cluster Head em um No normal
 	 * <b>So e utilizada para fazer um CH virar um No normal.</b>
 	 */
-	private void transformarClusterHeadEmNo() {
+	public void transformarClusterHeadEmNo() {
 
 		CustomGlobal.myOutput(1, patente + ID + " voltando a ser No normal.");
 
@@ -932,7 +932,7 @@ public class LeachNode extends Node {
 
 	@Override
 	public String toString() {
-
+		
 		String me = "";
 		me += "SIMULACAO DO LEACH - STATUS DE NOï¿½\n";
 		me += "Leach Node ID:		" + ID + "\n";
@@ -941,10 +941,10 @@ public class LeachNode extends Node {
 		me += "Cluster Head:		" + (currentClusterHead == null ? "NENHUM" : currentClusterHead.ID) + "\n";
 		me += "Energia atual:		" + getBateriaPorcentagem() + "% (" + getEnergiaRestante() + ")" + "\n";
 		me += "Estacao Base:		" + (estacaoBase == null ? "NAO DEFINIDO AINDA" : estacaoBase.ID) + "\n";
-		me += "Buffer interno:		" + "Tamanho: " + buffer.length() + " '" + buffer + "'" + "\n";
+		me += "Buffer interno:		" + "Tamanho: " + (buffer == null ? "NULL" : buffer.length()) + " '" + (buffer == null ? "NULL" : buffer) + "'" + "\n";
 		me += "Ultimo Round como CH:" + ultimoRoundComoCH + "\n";
 		if (getFuncao() == Funcao.ClusterHead) {
-			me += "Buffer CH:			" + "Tamanho: " + bufferCH.length() + " '" + bufferCH + "'" + "\n";
+			me += "Buffer CH:			" + "Tamanho: " + (bufferCH == null ? "NULL" : bufferCH.length()) + " '" + bufferCH + "'" + "\n";
 			me += "Tamanho do Cluster:	" + listaDeNos.size();
 		} else if (getFuncao() == Funcao.MembroDeCluster) {
 			me += "TDMA - Tamanho:		" + tamanhoTDMA + "\n";

@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import projects.leach_c.CustomGlobal;
+import projects.leach_c.Funcao;
 import projects.leach_c.nodes.messages.MsgDados;
 import projects.leach_c.nodes.nodeImplementations.LeachNode;
 import projects.leach_c.nodes.timers.TimerEstacaoBaseSinalizar;
@@ -24,7 +25,7 @@ import sinalgo.tools.Tools;
 public class EstacaoBaseNode extends Node {
 
 	public final static Double tempoDeSinalizacao = 100.0;
-	public final static Double tempoDeEleicao = 1000.0;
+	public final static Double tempoDeEleicao = 200.0;
 
 	@Override
 	public void handleMessages(Inbox inbox) {
@@ -70,7 +71,11 @@ public class EstacaoBaseNode extends Node {
 		for (Node node : listaNos) {
 			if(node instanceof LeachNode && ((LeachNode) node).isVivo()) {
 				LeachNode no = (LeachNode) node;
-
+				
+				if(no.getFuncao() == Funcao.ClusterHead) {
+					no.transformarClusterHeadEmNo();
+				}
+				
 				//adiciona o ID do no na lista de candidatos
 				if(no.getBateriaPorcentagem() >= bateriaMedia) {
 					listNosCandidatos.add(new Candidato(no));

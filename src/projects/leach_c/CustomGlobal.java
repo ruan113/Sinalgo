@@ -64,7 +64,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	 *  =======================================================================
 	 */
 
-	/** Número de rodadas do sinalgo que são um ROUND para o Leach */
+	/** Número de rodadas do sinalgo que são um ROUND para o Leach_c */
 	public static int RODADAS_POR_ROUND = 200;
 
 	/** Porcentagem de Cluster Heads desejada. */

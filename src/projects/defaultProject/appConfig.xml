@@ -2,8 +2,8 @@
 <sinalgo>
 	<ProjectSelector windowWidth="800" windowHeight="681" lastChosenProject="leach_c" windowPosX="204" windowPosY="202" isMaximized="false" selectedTab="3" />
 	<GUI windowWidth="1121" windowHeight="1056" windowPosX="65" windowPosY="24" isMaximized="true" ControlPanelExpandSimulation="true" ControlPanelShowFullViewPanel="false" ControlPanelShowTextPanel="true" ControlPanelShowProjectControl="true" RunOperationIsLimited="false" helpWindowWidth="500" helpWindowHeight="500" helpWindowPosX="200" helpWindowPosY="200" helpWindowIsMaximized="false" />
-	<RandomSeed seedFromPreviousRun="-3147672448849244530" />
+	<RandomSeed seedFromPreviousRun="1581653080857519365" />
 	<App lastSelectedFileDirectory="/home/ruan/sinalgo/src/projects/leach/" checkForUpdatesAtStartup="false" updateCheckTimeStamp="0" runCmdLineArgs="" />
-	<GenNodesDlg numNodes="100" />
+	<GenNodesDlg numNodes="1" />
 </sinalgo>
 

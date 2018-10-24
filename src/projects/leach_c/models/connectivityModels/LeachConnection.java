@@ -28,9 +28,9 @@
 
 package projects.leach_c.models.connectivityModels;
 
-import projects.leach.Funcao;
-import projects.leach.nodes.nodeImplementations.EstacaoBaseNode;
-import projects.leach.nodes.nodeImplementations.LeachNode;
+import projects.leach_c.Funcao;
+import projects.leach_c.nodes.nodeImplementations.EstacaoBaseNode;
+import projects.leach_c.nodes.nodeImplementations.LeachNode;
 import sinalgo.models.ConnectivityModelHelper;
 import sinalgo.nodes.Node;
 

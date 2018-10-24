@@ -256,6 +256,6 @@
 		<!-- Variavel que controla o nivel de saida dos dados -->
 		<Simulacao NivelDeInformacao="0" />
 
-		<PathToLeach Path="/home/ruan/sinalgo/src/projects/leach"/>
+		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach"/>
 				</Custom>
 </Document>
