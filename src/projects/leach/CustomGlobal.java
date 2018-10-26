@@ -91,6 +91,8 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	/** Variavel que ontrola o nivel de saida dos dados */
 	public static int OUTPUT_LEVEL = 0;
 
+	public static int NUM_NOS_VIVOS = 0;
+	
 	public static String PATH_LEACH_DIR = "D:\\Downloads\\sinalgo\\src\\projects\\leach";
 	
 	public static String SEPARETOR = "/";
@@ -198,6 +200,17 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	@Override
 	public void preRound() {
 		// TODO Auto-generated method stub
+		Boolean stillWorking = true;
+		
+		if(NUM_NOS_VIVOS <= 0) {
+			stillWorking = false;
+		}
+		
+		
+		if(!stillWorking) {
+			Tools.stopSimulation();
+		}
+		
 		super.preRound();
 	}
 	

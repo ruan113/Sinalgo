@@ -48,10 +48,10 @@ public class LeachNode extends Node {
 
 	// Dados Compartilhados ===================================================
 
-	/** Noï¿½mero de Cluster Heads ativos. */
+	/** Número de Cluster Heads ativos. */
 	public static int NUMEROS_DE_CH = 0;
 
-	/** Noï¿½mero total de Nos na simulacao. */
+	/** Número total de Nos na simulacao. */
 	public static int NUMEROS_DE_NOS = 0;
 
 	// Caracteristicas do No ==================================================
@@ -76,7 +76,7 @@ public class LeachNode extends Node {
 	/** Indica quem e o lider do cluster que o No participa. */
 	private LeachNode currentClusterHead = null;
 
-	/** Noï¿½mero de slots de tempo para a configuracao TDMA. */
+	/** Número de slots de tempo para a configuracao TDMA. */
 	private int tamanhoTDMA = CustomGlobal.NUMERO_MAXIMO_DE_NOS_POR_CLUSTER;
 
 	/** Slot que um No ira utilizar para saber quando transmitir */
@@ -112,7 +112,8 @@ public class LeachNode extends Node {
 	public void init() {
 
 		NUMEROS_DE_NOS++;
-
+		CustomGlobal.NUM_NOS_VIVOS++;
+		
 		vivo = true;
 
 		patente = "No ";
@@ -206,10 +207,6 @@ public class LeachNode extends Node {
 	/** Funcao executada antes de cada passo da simulacao por cada No */
 	@Override
 	public void preStep() {
-
-		if (getEnergiaRestante() <= 0) {
-			matarNo();
-		}
 
 		if (isVivo()) {
 			// Coleta os dados e adiciona no buffer.
@@ -350,10 +347,6 @@ public class LeachNode extends Node {
 	/** AÃ§Ãµes apos o passo de simulacao */
 	@Override
 	public void postStep() {
-
-		if (getEnergiaRestante() <= 0) {
-			matarNo();
-		}
 
 	}
 
@@ -568,7 +561,7 @@ public class LeachNode extends Node {
 			Main.fatalError(e.getMessage());
 		}
 
-		if (consumirEnerigia(m.toString().length() * rMax)) {
+		if (consumirEnergia(m.toString().length() * rMax)) {
 			broadcast(m);
 			return true;
 		}
@@ -586,7 +579,7 @@ public class LeachNode extends Node {
 		// Calcula a distancia e a potencia necessaria para enviar a mensagem
 
 		double custo = getCustoTransmissao(m.toString().length(), target);
-		if (consumirEnerigia(custo)) {
+		if (consumirEnergia(custo)) {
 
 			CustomGlobal.myOutput(3, patente + ID + " enviando " + m.getClass().getSimpleName() + " para "
 					+ ((LeachNode) target).patente + target.ID + " ao custo de " + custo + " J.");
@@ -606,7 +599,15 @@ public class LeachNode extends Node {
 
 	/** Define o No como morto */
 	public void matarNo() {
-
+		
+		//Checa se o nó estiver vivo
+		if(this.isVivo()) {
+			//Houve ocorrencias onde um nó morto estava sendo morto denovo, 
+			//então foi colocada esta condição na função.
+			CustomGlobal.NUM_NOS_VIVOS--;//Decrementa um no numero de nós vivos
+		}
+		
+		//Seta as variaveis como padrão de um nó morto
 		setBandeira(CustomGlobal.BANDEIRA_LIVRE);
 		tamanhoTDMA = -1;
 		slotTDMA = -1;
@@ -614,7 +615,6 @@ public class LeachNode extends Node {
 		listaDeNos = null;
 		bufferCH = null;
 		buffer = null;
-
 		vivo = false;
 	}
 
@@ -655,7 +655,7 @@ public class LeachNode extends Node {
 
 		setClusterHead(this);
 
-		// Incrimenta o Noï¿½mero de CH, devido ao limite de CHs ao mesmo tempo.
+		// Incrimenta o Número de CH, devido ao limite de CHs ao mesmo tempo.
 		NUMEROS_DE_CH++;
 
 		// Define a cor do CH.
@@ -870,7 +870,7 @@ public class LeachNode extends Node {
 		bufferCH = new StringBuilder();
 	}
 
-	public boolean consumirEnerigia(Double j) {
+	public boolean consumirEnergia(Double j) {
 
 		if (bateria - j > 0) {
 			bateria -= j;
@@ -897,7 +897,7 @@ public class LeachNode extends Node {
 		}
 
 		if (Global.currentTime % CustomGlobal.INTERVALO_DE_COLETA == 0) {
-			if (consumirEnerigia(1.0)) {
+			if (consumirEnergia(1.0)) {
 				buffer.append((int) (Math.random() * 10));
 			}
 		}
@@ -933,7 +933,7 @@ public class LeachNode extends Node {
 	public String toString() {
 		
 		String me = "";
-		me += "SIMULACAO DO LEACH - STATUS DE NOï¿½\n";
+		me += "SIMULACAO DO LEACH - STATUS DE NÓ\n";
 		me += "Leach Node ID:		" + ID + "\n";
 		me += "Funcao:				" + getFuncao() + "\n";
 		me += "Estado:				" + (isVivo() ? "vivo" : "morto") + "\n";
