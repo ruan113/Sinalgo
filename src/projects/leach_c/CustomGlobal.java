@@ -214,6 +214,22 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		super.preRound();
 	}
 
+	@Override
+	public void postRound() {
+		/*for(Node no : Tools.getNodeList()) {
+			if(no instanceof LeachNode) {
+				if(((LeachNode) no).getFuncao() == Funcao.ClusterHead) {
+					RODADAS_VERDADEIRA++;
+					break;
+				}	
+			}
+		}
+		
+		System.out.println(RODADAS_VERDADEIRA);*/
+
+		super.postRound();
+	}
+	
 	/** Carrega as configuraçoes e define as variaveis globais */
 	@Override
 	public void checkProjectRequirements() {

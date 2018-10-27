@@ -63,6 +63,9 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	 *  =            Variaveis globais e de controle da simulação             =
 	 *  =======================================================================
 	 */
+	
+	/** Número de rodadas do sinalgo que são um ROUND para o Leach */
+	public static int RODADAS_VERDADEIRA = 0;	
 
 	/** Número de rodadas do sinalgo que são um ROUND para o Leach */
 	public static int RODADAS_POR_ROUND = 200;
@@ -212,6 +215,22 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		}
 		
 		super.preRound();
+	}
+	
+	@Override
+	public void postRound() {
+		for(Node no : Tools.getNodeList()) {
+			if(no instanceof LeachNode) {
+				if(((LeachNode) no).getFuncao() == Funcao.ClusterHead) {
+					RODADAS_VERDADEIRA++;
+					break;
+				}	
+			}
+		}
+		
+		System.out.println(RODADAS_VERDADEIRA);
+		
+		super.postRound();
 	}
 	
 	/** Carrega as configuraçoes e define as variaveis globais */

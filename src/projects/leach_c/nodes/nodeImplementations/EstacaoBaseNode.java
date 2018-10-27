@@ -25,7 +25,6 @@ import sinalgo.tools.Tools;
 public class EstacaoBaseNode extends Node {
 
 	public final static Double tempoDeSinalizacao = 100.0;
-	public final static Double tempoDeEleicao = 200.0;
 
 	@Override
 	public void handleMessages(Inbox inbox) {
@@ -72,7 +71,8 @@ public class EstacaoBaseNode extends Node {
 			if(node instanceof LeachNode && ((LeachNode) node).isVivo()) {
 				LeachNode no = (LeachNode) node;
 				
-				if(no.getFuncao() == Funcao.ClusterHead) {
+				//Os antigos perdem o cargo
+				if (no.getFuncao() == Funcao.ClusterHead) {
 					no.transformarClusterHeadEmNo();
 				}
 				
@@ -154,7 +154,7 @@ public class EstacaoBaseNode extends Node {
 
 	@Override
 	public void preStep() {
-		if (Global.currentTime % tempoDeEleicao == 0) {
+		if (Global.currentTime % CustomGlobal.RODADAS_POR_ROUND == 0) {
 			elegeCHs();
 		}
 

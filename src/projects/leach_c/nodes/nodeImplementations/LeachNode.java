@@ -225,9 +225,7 @@ public class LeachNode extends Node {
 
 				// Testa se ja e o seu SLOT de transmissão...
 				if (Global.currentTime % tamanhoTDMA == slotTDMA) {
-
 					transmitirDadosAoCH();
-
 				}
 			}
 		}
@@ -398,9 +396,7 @@ public class LeachNode extends Node {
 	public void handleMsgDados(MsgDados m, LeachNode ln) {
 		double custo = 0;
 		
-		if(m == null)
-			return;
-		if(ln == null)
+		if(m == null || ln == null || bufferCH == null)
 			return;
 		
 		if (estacaoBase != null) {

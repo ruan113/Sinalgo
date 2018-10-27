@@ -229,9 +229,7 @@ public class LeachNode extends Node {
 
 				// Testa se ja e o seu SLOT de transmissão...
 				if (Global.currentTime % tamanhoTDMA == slotTDMA) {
-
 					transmitirDadosAoCH();
-
 				}
 			}
 
@@ -415,15 +413,17 @@ public class LeachNode extends Node {
 	 */
 	public void handleMsgDados(MsgDados m, LeachNode ln) {
 		double custo = 0;
+		
+		if(m == null || ln == null || bufferCH == null)
+			return;
+		
+		
 		if (estacaoBase != null) {
 			custo = getCustoTransmissao(bufferCH.length() + m.toString().length(), estacaoBase);
 		}
 		if (custo < getEnergiaRestante()) {
 			bufferCH.append("No " + ln.ID + ":'" + m.dados + "'\n");
-			// System.out.println(bufferCH.toString());
-		} else {
-
-		}
+		} 
 	}
 
 	/**
@@ -592,7 +592,7 @@ public class LeachNode extends Node {
 
 	public boolean mySend(Message m, Node target) {
 		// Calcula a distancia e a potencia necessaria para enviar a mensagem
-
+	
 		double custo = getCustoTransmissao(m.toString().length(), target);
 		if (consumirEnergia(custo)) {
 
@@ -935,9 +935,7 @@ public class LeachNode extends Node {
 	}
 
 	public int getRound() {
-
 		return (int) Global.currentTime / CustomGlobal.RODADAS_POR_ROUND;
-
 	}
 
 	public boolean isInicioDeRound() {
@@ -955,10 +953,10 @@ public class LeachNode extends Node {
 		me += "Cluster Head:		" + (currentClusterHead == null ? "NENHUM" : currentClusterHead.ID) + "\n";
 		me += "Energia atual:		" + getBateriaPorcentagem() + "% (" + getEnergiaRestante() + ")" + "\n";
 		me += "Estacao Base:		" + (estacaoBase == null ? "NAO DEFINIDO AINDA" : estacaoBase.ID) + "\n";
-		me += "Buffer interno:		" + "Tamanho: " + buffer.length() + " '" + buffer + "'" + "\n";
+		me += "Buffer interno:		" + "Tamanho: " + (isVivo() ? buffer.length() : 0) + " '" + (isVivo() ? buffer : "Null") + "'" + "\n";
 		me += "Ultimo Round como CH:" + ultimoRoundComoCH + "\n";
 		if (getFuncao() == Funcao.ClusterHead) {
-			me += "Buffer CH:			" + "Tamanho: " + bufferCH.length() + " '" + bufferCH + "'" + "\n";
+			me += "Buffer CH:			" + "Tamanho: " + (isVivo() ? bufferCH.length() : 0) + " '" + (isVivo() ? bufferCH : "Null") + "'" + "\n";
 			me += "Tamanho do Cluster:	" + listaDeNos.size();
 		} else if (getFuncao() == Funcao.MembroDeCluster) {
 			me += "TDMA - Tamanho:		" + tamanhoTDMA + "\n";
