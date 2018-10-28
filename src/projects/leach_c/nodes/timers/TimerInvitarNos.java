@@ -14,6 +14,6 @@ public class TimerInvitarNos extends Timer {
 
 		((LeachNode) node).myBroadcast(new MsgInvitacao());
 
-		CustomGlobal.myOutput(1, ((LeachNode) node).getPatente() + " disparando invitação a todos os nós no alcance.");
+		//CustomGlobal.myOutput(1, ((LeachNode) node).getPatente() + " disparando invitação a todos os nós no alcance.");
 	}
 }

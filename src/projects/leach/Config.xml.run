@@ -14,7 +14,7 @@
 		<dimY value="5000" />
 
 		<!--Length of the deployment field along the z-axis.-->
-		<dimZ value="2000" />
+		<dimZ value="5000" />
 
 		<!--***********************************************************************-->
 		<!--  Simulation                                                           -->
@@ -38,7 +38,7 @@
 		<canReceiveMultiplePacketsInParallel value="true" />
 
 		<!--The default type of edges to be used-->
-		<edgeType value="leach_c:LeachEdge" />
+		<edgeType value="leach:LeachEdge" />
 
 		<!--If set to true, the application exits as soon as the termination criteria is met. This flag only affects the GUI mode.-->
 		<exitOnTerminationInGUI value="false" />
@@ -134,7 +134,7 @@
 		<DefaultMessageTransmissionModel value="ConstantTime" />
 
 		<!--Default connectivity model used when none is specified-->
-		<DefaultConnectivityModel value="leach_c:LeachConnection" />
+		<DefaultConnectivityModel value="leach:LeachConnection" />
 
 		<!--Default distribution model used when none is specified-->
 		<DefaultDistributionModel value="Grid2D" />
@@ -149,7 +149,7 @@
 		<DefaultReliabilityModel value="ReliableDelivery" />
 
 		<!--Default node implementation used when none is specified-->
-		<DefaultNodeImplementation value="leach_c:LeachNode" />
+		<DefaultNodeImplementation value="leach:LeachNode" />
 
 		<!--Show the models implemented by all projects in the drop down options. When set to false, only the models by the selected project and the default project are shown.-->
 		<showModelsOfAllProjects value="false" />
@@ -254,8 +254,11 @@
 		<LeachNode DesenharDetalhesDosNos="false" />
 
 		<!-- Variavel que controla o nivel de saida dos dados -->
-		<Simulacao NivelDeInformacao="0" />
+		<Simulacao NivelDeInformacao="5" />
+
+		<PathToLog Path="D:\\Downloads\\Sinalgo\\Testes\\Leach"/>
 
 		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach\\PosicoesTeste"/>
-				</Custom>
+					</Custom>
 </Document>
+

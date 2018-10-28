@@ -42,6 +42,8 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import projects.leach_c.nodes.nodeImplementations.LeachNode;
 import sinalgo.configuration.Configuration;
 import sinalgo.nodes.Node;
@@ -118,7 +120,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 
 		int nivel = js.getValue();
 		OUTPUT_LEVEL = nivel;
-		myOutput(0, "Nivel de Log ajustado para " + nivel + ".");
+		////myOutput(0, "Nivel de Log ajustado para " + nivel + ".");
 
 	}
 
@@ -138,7 +140,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 
 		int rpr = js.getValue();
 		RODADAS_POR_ROUND = rpr;
-		myOutput(0, "Tamanho do Round Leach ajustado para " + RODADAS_POR_ROUND + "rounds.");
+		////myOutput(0, "Tamanho do Round Leach ajustado para " + RODADAS_POR_ROUND + "rounds.");
 
 	}
 
@@ -159,7 +161,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		double pct = js.getValue();
 
 		PORCENTAGEM_CH = pct / 100.0;
-		myOutput(0, "Porcentagem de CH ajustada para  " + DF.format(PORCENTAGEM_CH * 100) + "%.");
+		//myOutput(0, "Porcentagem de CH ajustada para  " + DF.format(PORCENTAGEM_CH * 100) + "%.");
 
 	}
 
@@ -178,7 +180,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		JOptionPane.showMessageDialog(null, js, "Quantidade de Energia Inicial dos Nos", JOptionPane.QUESTION_MESSAGE);
 
 		BATERIA_INICIAL = snm.getNumber().doubleValue();
-		myOutput(0, "Bateria inicial dos nós ajustada para " + BATERIA_INICIAL + ".");
+		//myOutput(0, "Bateria inicial dos nós ajustada para " + BATERIA_INICIAL + ".");
 
 	}
 
@@ -248,61 +250,67 @@ public class CustomGlobal extends AbstractCustomGlobal {
 			File tmpDir = null;
 			Random rand = new Random();
 
-			//Gera 100 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[100];
+			for(int j = 0; j < 10; j++) {
+				//Gera 100 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-				for(int i = 0; i < 100; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
+					printOnFile(strings,"leachNodes100-"+j);
 				}
-
-				printOnFile(strings,"leachNodes100");
 			}
+			
+			for(int j = 0; j < 10; j++) {
+				//Gera 300 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-			//Gera 300 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[300];
-
-				for(int i = 0; i < 300; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
+					printOnFile(strings,"leachNodes300-"+j);
 				}
-
-				printOnFile(strings,"leachNodes300");
 			}
+			
+			for(int j = 0; j < 10; j++) {
+				//Gera 500 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-			//Gera 500 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[500];
-
-				for(int i = 0; i < 500; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
+					printOnFile(strings,"leachNodes500-"+j);
 				}
-
-				printOnFile(strings,"leachNodes500");
 			}
-
+			
 			//Gera posi��o da esta��o radio base
 			{
-				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"radioBase.pos");
+				tmpDir = new File(PATH_LEACH_DIR+"//radioBase.pos");
 				if(tmpDir.exists()) {
-					tmpDir.delete();
+					tmpDir.delete();			
 				}
-
+				
 				String[] strings = new String[1];
-
+				
 				strings[0] = (Configuration.dimX/2)+","+
 				(Configuration.dimY/2)+
 				",0.0";
-
+			
 				printOnFile(strings,"radioBase");
 			}
 
@@ -347,22 +355,12 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	}
 
 	/** Função que exibe a saida para relatórios da simulação com base no limite */
-	public static void myOutput(int level, String texto) {
+	public static void myOutput(String round, String energia, Boolean msgEnviada) {
+			String separador = ";";
+			Tools.appendToOutput(round+separador+energia+separador+(msgEnviada ? "1" : "0")+"\n");
 
-		if (OUTPUT_LEVEL >= level) {
-			String destaque = "|-(" + level + ")-";
+			System.out.println(round+separador+energia+separador+(msgEnviada ? "1" : "0"));
 
-			for (int d = 0; d < level; d++) {
-				destaque += "------";
-			}
-
-			Tools.appendToOutput(texto + "\n");
-
-			destaque += "> ";
-			texto = destaque + texto;
-			System.out.println(texto);
-
-		}
 	}
 
 }

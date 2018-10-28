@@ -30,6 +30,7 @@ package projects.leach;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -95,8 +96,10 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	public static int OUTPUT_LEVEL = 0;
 
 	public static int NUM_NOS_VIVOS = 0;
+
+	public static String PATH_LEACH_DIR = "";
 	
-	public static String PATH_LEACH_DIR = "D:\\Downloads\\sinalgo\\src\\projects\\leach";
+	public static String PATH_LOG_DIR = "";
 	
 	public static String SEPARETOR = "/";
 	
@@ -121,7 +124,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 
 		int nivel = js.getValue();
 		OUTPUT_LEVEL = nivel;
-		myOutput(0, "Nivel de Log ajustado para " + nivel + ".");
+		//myOutput(0, "Nivel de Log ajustado para " + nivel + ".");
 
 	}
 
@@ -141,7 +144,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 
 		int rpr = js.getValue();
 		RODADAS_POR_ROUND = rpr;
-		myOutput(0, "Tamanho do Round Leach ajustado para " + RODADAS_POR_ROUND + "rounds.");
+		//myOutput(0, "Tamanho do Round Leach ajustado para " + RODADAS_POR_ROUND + "rounds.");
 
 	}
 
@@ -162,7 +165,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		double pct = js.getValue();
 
 		PORCENTAGEM_CH = pct / 100.0;
-		myOutput(0, "Porcentagem de CH ajustada para  " + DF.format(PORCENTAGEM_CH * 100) + "%.");
+		//myOutput(0, "Porcentagem de CH ajustada para  " + DF.format(PORCENTAGEM_CH * 100) + "%.");
 
 	}
 
@@ -181,7 +184,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		JOptionPane.showMessageDialog(null, js, "Quantidade de Energia Inicial dos Nos", JOptionPane.QUESTION_MESSAGE);
 
 		BATERIA_INICIAL = snm.getNumber().doubleValue();
-		myOutput(0, "Bateria inicial dos nós ajustada para " + BATERIA_INICIAL + ".");
+		//myOutput(0, "Bateria inicial dos nós ajustada para " + BATERIA_INICIAL + ".");
 
 	}
 
@@ -247,50 +250,57 @@ public class CustomGlobal extends AbstractCustomGlobal {
 			BATERIA_INICIAL = Configuration.getDoubleParameter("LeachNode/BateriaInicial");
 			OUTPUT_LEVEL = Configuration.getIntegerParameter("Simulacao/NivelDeInformacao");
 			PATH_LEACH_DIR = Configuration.getStringParameter("PathToLeach/Path");
+			PATH_LOG_DIR = Configuration.getStringParameter("PathToLog/Path");
 			
 			File tmpDir = null;
 			Random rand = new Random();
 			
-			//Gera 100 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[100];
-				
-				for(int i = 0; i < 100; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
-				}
+			for(int j = 0; j < 10; j++) {
+				//Gera 100 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-				printOnFile(strings,"leachNodes100");
+					printOnFile(strings,"leachNodes100-"+j);
+				}
 			}
 			
-			//Gera 300 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[300];
-				
-				for(int i = 0; i < 300; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
-				}
+			for(int j = 0; j < 10; j++) {
+				//Gera 300 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-				printOnFile(strings,"leachNodes300");
+					printOnFile(strings,"leachNodes300-"+j);
+				}
 			}
 			
-			//Gera 500 posi��es aleatorias e as salva em um arquivo
-			tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500.pos");
-			if(!tmpDir.exists()) {
-				String[] strings = new String[500];
-				
-				for(int i = 0; i < 500; i++) {
-					strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
-					(rand.nextDouble()* Configuration.dimY)+
-					",0.0";
-				}
+			for(int j = 0; j < 10; j++) {
+				//Gera 500 posi��es aleatorias e as salva em um arquivo
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500-"+j+".pos");
+				if(!tmpDir.exists()) {
+					String[] strings = new String[100];
+					
+					for(int i = 0; i < 100; i++) {
+						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
+						(rand.nextDouble()* Configuration.dimY)+
+						",0.0";
+					}
 
-				printOnFile(strings,"leachNodes500");
+					printOnFile(strings,"leachNodes500-"+j);
+				}
 			}
 			
 			//Gera posi��o da esta��o radio base
@@ -314,7 +324,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		}
 
 	}
-
+	
 	/*
 	 *  =======================================================================
 	 *  =                         Funções de auxilio                          =
@@ -350,22 +360,24 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	}
 	
 	/** Função que exibe a saida para relatórios da simulação com base no limite */
-	public static void myOutput(int level, String texto) {
-
-		if (OUTPUT_LEVEL >= level) {
-			String destaque = "|-(" + level + ")-";
-
-			for (int d = 0; d < level; d++) {
-				destaque += "------";
+	public static void myOutput(String texto) {
+		
+		File tmpDir = null;
+		tmpDir = new File(PATH_LOG_DIR+SEPARETOR+"teste.txt");
+		
+		try {
+			if(!tmpDir.exists()) {
+				FileWriter writer = new FileWriter(tmpDir);
+				writer.write(texto+"\n");
+				writer.close();
+			}else {
+				System.out.println("oi------------------------------------------------");
+				FileWriter writer = new FileWriter(tmpDir,true);
+				writer.write(texto+"\n");
+				writer.close();
 			}
-
-			Tools.appendToOutput(texto + "\n");
-
-			destaque += "> ";
-			texto = destaque + texto;
-			System.out.println(texto);
-
+		}catch (Exception e) {
+			System.out.println(e);
 		}
 	}
-
 }

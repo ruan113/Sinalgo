@@ -14,7 +14,7 @@
 		<dimY value="5000" />
 
 		<!--Length of the deployment field along the z-axis.-->
-		<dimZ value="2000" />
+		<dimZ value="5000" />
 
 		<!--***********************************************************************-->
 		<!--  Simulation                                                           -->
@@ -80,7 +80,7 @@
 		<logFileName value="logfile.txt" />
 
 		<!--Redirects the default log file to the console. No logfile will be created if set to true.-->
-		<outputToConsole value="true" />
+		<outputToConsole value="false" />
 
 		<!--Indicates whether all log-files of the current simulation  are stored in a new directory. The name of the new directory is given by the string-representation of the date when the simulation starts.-->
 		<logToTimeDirectory value="true" />
@@ -89,7 +89,7 @@
 		<logConfiguration value="true" />
 
 		<!--If set to true, the log files are flushed every time a new log is added.-->
-		<eagerFlush value="true" />
+		<eagerFlush value="false" />
 
 		<!--***********************************************************************-->
 		<!--  GUI                                                                  -->
@@ -254,8 +254,10 @@
 		<LeachNode DesenharDetalhesDosNos="false" />
 
 		<!-- Variavel que controla o nivel de saida dos dados -->
-		<Simulacao NivelDeInformacao="0" />
+		<Simulacao NivelDeInformacao="5" />
 
-		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach"/>
+		<PathToLog Path="D:\\Downloads\\Sinalgo\\Testes\\Leach"/>
+
+		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach\\PosicoesTeste"/>
 				</Custom>
 </Document>

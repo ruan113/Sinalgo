@@ -117,7 +117,7 @@ public class LeachNode extends Node {
 		vivo = true;
 
 		patente = "No ";
-		CustomGlobal.myOutput(0, patente + ID + " criado.");
+		//CustomGlobal.myOutput(0, patente + ID + " criado.");
 
 		bateria = CustomGlobal.BATERIA_INICIAL;
 
@@ -144,8 +144,8 @@ public class LeachNode extends Node {
 
 			Message msg = inbox.next();
 
-			CustomGlobal.myOutput(2, patente + " " + ID + " recebeu '" + msg.getClass().getSimpleName() + "' de "
-					+ patente + inbox.getSender().ID + ".");
+			//CustomGlobal.myOutput(2, patente + " " + ID + " recebeu '" + msg.getClass().getSimpleName() + "' de "
+			//		+ patente + inbox.getSender().ID + ".");
 
 			// Mensagens da estacao base --------------------------------------
 			if (msg instanceof MsgEstacaoBaseFarol) {
@@ -458,7 +458,7 @@ public class LeachNode extends Node {
 		// Se ainda nao tiver um CH aceita, caso tenha escolhe pelo
 		// mais proximo.
 
-		CustomGlobal.myOutput(3, patente + ID + " recebeu uma invitacao para se afiliar ao CH " + ch.ID);
+		//CustomGlobal.myOutput(3, patente + ID + " recebeu uma invitacao para se afiliar ao CH " + ch.ID);
 
 		TimerSendMessage tsm;
 
@@ -475,16 +475,16 @@ public class LeachNode extends Node {
 
 			double distanciaCHNovo = getPosition().squareDistanceTo(ch.getPosition());
 
-			CustomGlobal.myOutput(3, patente + ID + " comparou a distancia entre o CH " + getClusterHead().ID
-					+ " (atual: " + distanciaCHAtual + ") e o CH " + ch.ID + " (novo: " + distanciaCHNovo + ")");
+			//CustomGlobal.myOutput(3, patente + ID + " comparou a distancia entre o CH " + getClusterHead().ID
+			//		+ " (atual: " + distanciaCHAtual + ") e o CH " + ch.ID + " (novo: " + distanciaCHNovo + ")");
 
 			if (distanciaCHNovo < distanciaCHAtual) {
 
 				double diferenca = distanciaCHNovo * 100 / distanciaCHAtual;
 
-				CustomGlobal.myOutput(3,
-						patente + ID + " escolheu o CH " + ch.ID + " que esta " + CustomGlobal.DF.format(diferenca)
-								+ " mais perto.");
+				//CustomGlobal.myOutput(3,
+				//		patente + ID + " escolheu o CH " + ch.ID + " que esta " + CustomGlobal.DF.format(diferenca)
+				//				+ " mais perto.");
 
 				TimerDesconectarDeCH tdc = new TimerDesconectarDeCH(getClusterHead());
 				tdc.startRelative(1, this);
@@ -497,8 +497,8 @@ public class LeachNode extends Node {
 			} else {
 				double diferenca = distanciaCHAtual * 100 / distanciaCHNovo;
 
-				CustomGlobal.myOutput(3, patente + ID + " manteve o CH " + getClusterHead().ID + " que esta "
-						+ CustomGlobal.DF.format(diferenca) + " mais perto que a nova sugestão.");
+				//CustomGlobal.myOutput(3, patente + ID + " manteve o CH " + getClusterHead().ID + " que esta "
+					//	+ CustomGlobal.DF.format(diferenca) + " mais perto que a nova sugestão.");
 
 			}
 		}
@@ -518,8 +518,8 @@ public class LeachNode extends Node {
 	 */
 	public void handleMsgSetupTDMA(MsgSetupTDMA m, LeachNode sender) {
 
-		CustomGlobal.myOutput(4, patente + " configuracao TDMA recebida: (divisões: " + m.tamanhoTdma + ", slot:"
-				+ m.slot);
+		//CustomGlobal.myOutput(4, patente + " configuracao TDMA recebida: (divisões: " + m.tamanhoTdma + ", slot:"
+		//		+ m.slot);
 
 		tamanhoTDMA = m.tamanhoTdma;
 		slotTDMA = m.slot;
@@ -534,7 +534,7 @@ public class LeachNode extends Node {
 	 */
 	public void handleMsgRefuseConnection(LeachNode ch) {
 
-		CustomGlobal.myOutput(3, patente + " conexão com CH " + ch.ID + " negada pelo mesmo.");
+		//CustomGlobal.myOutput(3, patente + " conexão com CH " + ch.ID + " negada pelo mesmo.");
 
 		if (ch == getClusterHead()) {
 			setClusterHead(null);
@@ -596,18 +596,21 @@ public class LeachNode extends Node {
 		double custo = getCustoTransmissao(m.toString().length(), target);
 		if (consumirEnergia(custo)) {
 
-			CustomGlobal.myOutput(3, patente + ID + " enviando " + m.getClass().getSimpleName() + " para "
-					+ ((LeachNode) target).patente + target.ID + " ao custo de " + custo + " J.");
-
+			if(getFuncao() == Funcao.ClusterHead) {
+				CustomGlobal.myOutput(String.valueOf(getRound())+";"+String.valueOf(custo)+";"+"0");
+			}else {
+				CustomGlobal.myOutput(String.valueOf(getRound())+";"+String.valueOf(custo)+";"+"1");
+			}
+			
 			send(m, target);
 
 			return true;
 
 		} else {
-			CustomGlobal.myOutput(4,
-					patente + " " + ID + " possui apenas " + CustomGlobal.DF.format(getEnergiaRestante()) + " de "
-							+ CustomGlobal.DF.format(custo)
-							+ " necessarios para enviar mensagem. Mensagem NAO ENVIADA!");
+			//CustomGlobal.myOutput(4,
+			//		patente + " " + ID + " possui apenas " + CustomGlobal.DF.format(getEnergiaRestante()) + " de "
+			//				+ CustomGlobal.DF.format(custo)
+			//				+ " necessarios para enviar mensagem. Mensagem NAO ENVIADA!");
 			return false;
 		}
 	}
@@ -658,7 +661,7 @@ public class LeachNode extends Node {
 	/** Transforma o No em um Cluster Head */
 	private void transformarNoEmClusterHead() {
 
-		CustomGlobal.myOutput(0, patente + ID + " virou Cluster Head");
+		//CustomGlobal.myOutput(0, patente + ID + " virou Cluster Head");
 
 		patente = "CH ";
 
@@ -704,7 +707,7 @@ public class LeachNode extends Node {
 	 */
 	private void transformarClusterHeadEmNo() {
 
-		CustomGlobal.myOutput(1, patente + ID + " voltando a ser No normal.");
+		//CustomGlobal.myOutput(1, patente + ID + " voltando a ser No normal.");
 
 		transmitirDadosParaEB();
 
@@ -746,7 +749,7 @@ public class LeachNode extends Node {
 	}
 
 	public void limparBuffer() {
-		CustomGlobal.myOutput(5, patente + ID + " buffer limpo.");
+		//CustomGlobal.myOutput(5, patente + ID + " buffer limpo.");
 		buffer = new StringBuilder();
 	}
 
@@ -881,7 +884,7 @@ public class LeachNode extends Node {
 	}
 
 	public void limparBufferCh() {
-		CustomGlobal.myOutput(5, patente + ID + " buffer de Cluster Head limpo.");
+		//CustomGlobal.myOutput(5, patente + ID + " buffer de Cluster Head limpo.");
 		bufferCH = new StringBuilder();
 	}
 
@@ -890,7 +893,7 @@ public class LeachNode extends Node {
 		if (bateria - j > 0) {
 			bateria -= j;
 
-			CustomGlobal.myOutput(5, patente + " " + ID + " consumindo " + CustomGlobal.DF.format(j) + " energia.");
+			//CustomGlobal.myOutput(5, patente + " " + ID + " consumindo " + CustomGlobal.DF.format(j) + " energia.");
 			return true;
 		}
 		

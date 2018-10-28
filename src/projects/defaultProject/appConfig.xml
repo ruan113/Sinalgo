@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sinalgo>
 	<ProjectSelector windowWidth="800" windowHeight="681" lastChosenProject="leach" windowPosX="582" windowPosY="166" isMaximized="false" selectedTab="3" />
-	<GUI windowWidth="974" windowHeight="1047" windowPosX="953" windowPosY="0" isMaximized="false" ControlPanelExpandSimulation="true" ControlPanelShowFullViewPanel="false" ControlPanelShowTextPanel="true" ControlPanelShowProjectControl="true" RunOperationIsLimited="false" helpWindowWidth="500" helpWindowHeight="500" helpWindowPosX="200" helpWindowPosY="200" helpWindowIsMaximized="false" />
-	<RandomSeed seedFromPreviousRun="5757813080507638437" />
-	<App lastSelectedFileDirectory="D:\Downloads\Sinalgo\src\projects\leach\" checkForUpdatesAtStartup="false" updateCheckTimeStamp="0" runCmdLineArgs="" />
+	<GUI windowWidth="974" windowHeight="1047" windowPosX="953" windowPosY="0" isMaximized="true" ControlPanelExpandSimulation="true" ControlPanelShowFullViewPanel="false" ControlPanelShowTextPanel="true" ControlPanelShowProjectControl="true" RunOperationIsLimited="false" helpWindowWidth="500" helpWindowHeight="500" helpWindowPosX="200" helpWindowPosY="200" helpWindowIsMaximized="false" />
+	<RandomSeed seedFromPreviousRun="-9186512375437661215" />
+	<App lastSelectedFileDirectory="D:\Downloads\Sinalgo\src\projects\leach\PosicoesTeste\" checkForUpdatesAtStartup="false" updateCheckTimeStamp="0" runCmdLineArgs="" />
 	<GenNodesDlg numNodes="1" />
 </sinalgo>
 
