@@ -1,34 +1,3 @@
-/* ############################################################################
- * #                                                                          #
- * #    PROJETO - Implementação do Protocolo LEACH no simulador SINALGO       #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * #	Professor: Dr. Alex Sandro Roschildt Pinto                            #
- * #    Matéria: Redes de Computadores                                        #
- * #                                                                          #
- * #    Alunos: Gabriel Henrique Martinez Saraiva        RA: 10139-7          #
- * #            Leonardo de Oliveira Santos	             RA: 10156-7          #
- * #            Igor Stefani Buttarelo	             	 RA: 00002-1 AC       #
- * #                                                                          #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * ############################################################################
- *
- *
- * ############################################################################
- * #                                                                          #
- * #   Arquivo: LeachEdge.java                                                #
- * #                                                                          #
- * #   Responsavel por definir se uma conexão será exibida ou não.            #
- * #   Isso é necessário pois os nós só se comunicam caso exista a conexão    #
- * #   entre eles. E todos os cluster heads necessitam se comunicar com todos #
- * #   os nós para poder fazer o broadcast de suas mensagens, conexões essas  #
- * #   que não devem ser "mostradas" para não confundir o usuário             #
- * #                                                                          #
- * ############################################################################
- *
- */
-
 package projects.leach_c.nodes.edges;
 
 import java.awt.Graphics;

@@ -1,31 +1,3 @@
-/* ############################################################################
- * #                                                                          #
- * #    PROJETO - Implementação do Protocolo LEACH no simulador SINALGO       #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * #	Professor: Dr. Alex Sandro Roschildt Pinto                            #
- * #    Matéria: Redes de Computadores                                        #
- * #                                                                          #
- * #    Alunos: Gabriel Henrique Martinez Saraiva        RA: 10139-7          #
- * #            Leonardo de Oliveira Santos	             RA: 10156-7          #
- * #            Igor Stefani Buttarelo	             	 RA: 00002-1 AC       #
- * #                                                                          #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * ############################################################################
- * 
- * 
- * ############################################################################
- * #                                                                          #
- * #   Arquivo: CustomGlobal.java                                             #
- * #                                                                          #
- * #   Responsavel por definir Constantes, Configurações métodos responsáveis #
- * #   por controlar a simulação do projeto                                   #
- * #                                                                          #
- * ############################################################################
- * 
- */
-
 package projects.leach;
 
 import java.awt.Color;
@@ -214,7 +186,9 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		
 		
 		if(!stillWorking) {
+			System.out.println(RODADAS_VERDADEIRA);
 			Tools.stopSimulation();
+			myOutput(String.valueOf(RODADAS_VERDADEIRA));
 		}
 		
 		super.preRound();
@@ -224,14 +198,12 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	public void postRound() {
 		for(Node no : Tools.getNodeList()) {
 			if(no instanceof LeachNode) {
-				if(((LeachNode) no).getFuncao() == Funcao.ClusterHead) {
+				if(((LeachNode) no).getFuncao() == Funcao.ClusterHead && ((LeachNode) no).isVivo()) {
 					RODADAS_VERDADEIRA++;
 					break;
 				}	
 			}
 		}
-		
-		System.out.println(RODADAS_VERDADEIRA);
 		
 		super.postRound();
 	}
@@ -255,7 +227,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 			File tmpDir = null;
 			Random rand = new Random();
 			
-			for(int j = 0; j < 10; j++) {
+			for(int j = 0; j < 5; j++) {
 				//Gera 100 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100-"+j+".pos");
 				if(!tmpDir.exists()) {
@@ -270,14 +242,14 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes100-"+j);
 				}
 			}
-			
-			for(int j = 0; j < 10; j++) {
+			System.out.println("oi1");
+			for(int j = 0; j < 5; j++) {
 				//Gera 300 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300-"+j+".pos");
 				if(!tmpDir.exists()) {
-					String[] strings = new String[100];
+					String[] strings = new String[300];
 					
-					for(int i = 0; i < 100; i++) {
+					for(int i = 0; i < 300; i++) {
 						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
 						(rand.nextDouble()* Configuration.dimY)+
 						",0.0";
@@ -286,14 +258,14 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes300-"+j);
 				}
 			}
-			
-			for(int j = 0; j < 10; j++) {
+			System.out.println("oi2");
+			for(int j = 0; j < 5; j++) {
 				//Gera 500 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500-"+j+".pos");
 				if(!tmpDir.exists()) {
-					String[] strings = new String[100];
+					String[] strings = new String[500];
 					
-					for(int i = 0; i < 100; i++) {
+					for(int i = 0; i < 500; i++) {
 						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
 						(rand.nextDouble()* Configuration.dimY)+
 						",0.0";
@@ -302,10 +274,10 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes500-"+j);
 				}
 			}
-			
+			System.out.println("oi3");
 			//Gera posi��o da esta��o radio base
 			{
-				tmpDir = new File(PATH_LEACH_DIR+"//radioBase.pos");
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"radioBase.pos");
 				if(tmpDir.exists()) {
 					tmpDir.delete();			
 				}
@@ -363,7 +335,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	public static void myOutput(String texto) {
 		
 		File tmpDir = null;
-		tmpDir = new File(PATH_LOG_DIR+SEPARETOR+"teste.txt");
+		tmpDir = new File(PATH_LOG_DIR+SEPARETOR+"leach100-1.txt");
 		
 		try {
 			if(!tmpDir.exists()) {
@@ -371,7 +343,6 @@ public class CustomGlobal extends AbstractCustomGlobal {
 				writer.write(texto+"\n");
 				writer.close();
 			}else {
-				System.out.println("oi------------------------------------------------");
 				FileWriter writer = new FileWriter(tmpDir,true);
 				writer.write(texto+"\n");
 				writer.close();

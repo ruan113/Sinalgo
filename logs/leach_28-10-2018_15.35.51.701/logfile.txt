@@ -1,11 +1,15 @@
+You may have an invalid Java version: 25#181-b13. The application requires version 1.5 or more recent.
 > Starting SINALGO in GUI-Mode for project leach.
+oi1
+oi2
+oi3
 > Initialisation terminated.
 
 ------------------------------------------------------
 General Config
 ------------------------------------------------------
 Command Line arguments: -project leach 
-Java VM arguments: -Xmx1024m 
+Java VM arguments: -Xmx12288m 
 Class path: binaries\bin;binaries\jdom.jar
 ------------------------------------------------------
 Configuration settings
@@ -29,17 +33,17 @@ Configuration settings
     generateNAckMessages = false
     handleEmptyEventQueue = false
     javaCmd = java
-    javaVMmaxMem = 1024
+    javaVMmaxMem = 12288
  Random number generators
     useSameSeedAsInPreviousRun = false
     useFixedSeed = false
     fixedSeed = 5
  Logging
     logFileName = logfile.txt
-    outputToConsole = false
+    outputToConsole = true
     logToTimeDirectory = true
     logConfiguration = true
-    eagerFlush = false
+    eagerFlush = true
  GUI
     extendedControl = true
     drawArrows = true
@@ -97,14 +101,84 @@ Custom settings
  messagetransmission/constanttime = 10
  node/defaultsize = 10
  pathtoleach/path = D:\\Downloads\\Sinalgo\\src\\projects\\leach\\PosicoesTeste
- simulacao/niveldeinformacao = 0
+ pathtolog/path = D:\\Downloads\\Sinalgo\\Testes\\Leach-C
+ simulacao/niveldeinformacao = 5
 ------------------------------------------------------
 Seed for Random Number Generators
 ------------------------------------------------------
- Randomly selected seed: 8144410828080832821
+ Randomly selected seed: -6158895429386726028
 ------------------------------------------------------
 End of settings
 ------------------------------------------------------
 
 > Starting the Simulation.
 
+D:\Downloads\Sinalgo\src\projects\leach\PosicoesTeste\leachNodes100-0.pos
+D:\Downloads\Sinalgo\src\projects\leach\PosicoesTeste\radioBase.pos
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+EB 101 -> Enviando SINAL de farol com potencia máxima
+5999

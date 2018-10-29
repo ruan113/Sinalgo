@@ -597,9 +597,9 @@ public class LeachNode extends Node {
 		if (consumirEnergia(custo)) {
 
 			if(getFuncao() == Funcao.ClusterHead) {
-				CustomGlobal.myOutput(String.valueOf(getRound())+";"+String.valueOf(custo)+";"+"0");
+				CustomGlobal.myOutput(String.valueOf(getRound())+";"+this.ID+";"+String.valueOf(custo)+";"+"0");
 			}else {
-				CustomGlobal.myOutput(String.valueOf(getRound())+";"+String.valueOf(custo)+";"+"1");
+				CustomGlobal.myOutput(String.valueOf(getRound())+";"+this.ID+";"+String.valueOf(custo)+";"+"1");
 			}
 			
 			send(m, target);

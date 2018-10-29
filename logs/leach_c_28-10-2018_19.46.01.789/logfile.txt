@@ -1,0 +1,8 @@
+> Starting SINALGO in GUI-Mode for project leach_c.
+
+[Ljava.lang.StackTraceElement;@593634ad
+
+sinalgo.runtime.Main.fatalError(Main.java:304)
+projects.leach_c.CustomGlobal.checkProjectRequirements(CustomGlobal.java:317)
+sinalgo.runtime.Main.go(Main.java:220)
+sinalgo.runtime.Main.main(Main.java:81)

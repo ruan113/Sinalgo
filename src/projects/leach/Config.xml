@@ -59,7 +59,7 @@
 		<javaCmd value="java" />
 
 		<!--Maximum memory the Java VM is allowed to use (in MB)-->
-		<javaVMmaxMem value="1024" />
+		<javaVMmaxMem value="12288" />
 
 		<!--***********************************************************************-->
 		<!--  Random number generators                                             -->
@@ -80,7 +80,7 @@
 		<logFileName value="logfile.txt" />
 
 		<!--Redirects the default log file to the console. No logfile will be created if set to true.-->
-		<outputToConsole value="false" />
+		<outputToConsole value="true" />
 
 		<!--Indicates whether all log-files of the current simulation  are stored in a new directory. The name of the new directory is given by the string-representation of the date when the simulation starts.-->
 		<logToTimeDirectory value="true" />
@@ -89,7 +89,7 @@
 		<logConfiguration value="true" />
 
 		<!--If set to true, the log files are flushed every time a new log is added.-->
-		<eagerFlush value="false" />
+		<eagerFlush value="true" />
 
 		<!--***********************************************************************-->
 		<!--  GUI                                                                  -->
@@ -256,7 +256,7 @@
 		<!-- Variavel que controla o nivel de saida dos dados -->
 		<Simulacao NivelDeInformacao="5" />
 
-		<PathToLog Path="D:\\Downloads\\Sinalgo\\Testes\\Leach"/>
+		<PathToLog Path="D:\\Downloads\\Sinalgo\\Testes\\Leach-C"/>
 
 		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach\\PosicoesTeste"/>
 				</Custom>

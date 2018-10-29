@@ -1,31 +1,3 @@
-/* ############################################################################
- * #                                                                          #
- * #    PROJETO - Implementação do Protocolo LEACH no simulador SINALGO       #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * #	Professor: Dr. Alex Sandro Roschildt Pinto                            #
- * #    Matéria: Redes de Computadores                                        #
- * #                                                                          #
- * #    Alunos: Gabriel Henrique Martinez Saraiva        RA: 10139-7          #
- * #            Leonardo de Oliveira Santos	             RA: 10156-7          #
- * #            Igor Stefani Buttarelo	             	 RA: 00002-1 AC       #
- * #                                                                          #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * ############################################################################
- * 
- * 
- * ############################################################################
- * #                                                                          #
- * #   Arquivo: LeachConnection.java                                          #
- * #                                                                          #
- * #   Responsavel por definir se um nó pode ser conectado com outro nó ou    #
- * #   não. E controlar as regras para que isso aconteça.                     #
- * #                                                                          #
- * ############################################################################
- * 
- */
-
 package projects.leach_c.models.connectivityModels;
 
 import projects.leach_c.Funcao;

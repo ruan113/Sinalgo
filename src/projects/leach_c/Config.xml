@@ -59,7 +59,7 @@
 		<javaCmd value="java" />
 
 		<!--Maximum memory the Java VM is allowed to use (in MB)-->
-		<javaVMmaxMem value="1024" />
+		<javaVMmaxMem value="12288" />
 
 		<!--***********************************************************************-->
 		<!--  Random number generators                                             -->
@@ -255,6 +255,8 @@
 
 		<!-- Variavel que controla o nivel de saida dos dados -->
 		<Simulacao NivelDeInformacao="0" />
+
+		<PathToLog Path="D:\\Downloads\\Sinalgo\\Testes\\Leach-C"/>
 
 		<PathToLeach Path="D:\\Downloads\\Sinalgo\\src\\projects\\leach\\PosicoesTeste"/>
 				</Custom>

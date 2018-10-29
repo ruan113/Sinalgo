@@ -1,31 +1,3 @@
-/* ############################################################################
- * #                                                                          #
- * #    PROJETO - Implementação do Protocolo LEACH no simulador SINALGO       #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * #	Professor: Dr. Alex Sandro Roschildt Pinto                            #
- * #    Matéria: Redes de Computadores                                        #
- * #                                                                          #
- * #    Alunos: Gabriel Henrique Martinez Saraiva        RA: 10139-7          #
- * #            Leonardo de Oliveira Santos	             RA: 10156-7          #
- * #            Igor Stefani Buttarelo	             	 RA: 00002-1 AC       #
- * #                                                                          #
- * #    ---------------------------------------------------------------       #
- * #                                                                          #
- * ############################################################################
- *
- *
- * ############################################################################
- * #                                                                          #
- * #   Arquivo: CustomGlobal.java                                             #
- * #                                                                          #
- * #   Responsavel por definir Constantes, Configurações métodos responsáveis #
- * #   por controlar a simulação do projeto                                   #
- * #                                                                          #
- * ############################################################################
- *
- */
-
 package projects.leach_c;
 
 import java.awt.Color;
@@ -97,6 +69,8 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	
 	public static String PATH_LEACH_DIR = "D:\\Downloads\\sinalgo\\src\\projects\\leach_c";
 
+	public static String PATH_LOG_DIR = "";
+	
 	public static String SEPARETOR = "\\";
 
 	/*
@@ -141,7 +115,6 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		int rpr = js.getValue();
 		RODADAS_POR_ROUND = rpr;
 		////myOutput(0, "Tamanho do Round Leach ajustado para " + RODADAS_POR_ROUND + "rounds.");
-
 	}
 
 	/* Configuração da porcentagem de Cluster Heads desejada na simulação */
@@ -198,7 +171,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	public boolean hasTerminated() {
 		return false;
 	}
-
+	
 	@Override
 	public void preRound() {
 		// TODO Auto-generated method stub
@@ -240,17 +213,17 @@ public class CustomGlobal extends AbstractCustomGlobal {
 
 			RODADAS_POR_ROUND = Configuration.getIntegerParameter("LeachNode/RodadasPorRound");
 			PORCENTAGEM_CH = Configuration.getDoubleParameter("LeachNode/PorcentagemDeCH");
-			NUMERO_MAXIMO_DE_NOS_POR_CLUSTER = Configuration
-					.getIntegerParameter("LeachNode/NumeroMaximoDeNosPorCluster");
+			NUMERO_MAXIMO_DE_NOS_POR_CLUSTER = Configuration.getIntegerParameter("LeachNode/NumeroMaximoDeNosPorCluster");
 			INTERVALO_DE_COLETA = Configuration.getIntegerParameter("LeachNode/IntervaloDeColetaDeDados");
 			BATERIA_INICIAL = Configuration.getDoubleParameter("LeachNode/BateriaInicial");
 			OUTPUT_LEVEL = Configuration.getIntegerParameter("Simulacao/NivelDeInformacao");
 			PATH_LEACH_DIR = Configuration.getStringParameter("PathToLeach/Path");
+			PATH_LOG_DIR = Configuration.getStringParameter("PathToLog/Path");
 
 			File tmpDir = null;
 			Random rand = new Random();
-
-			for(int j = 0; j < 10; j++) {
+			
+			for(int j = 0; j < 5; j++) {
 				//Gera 100 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes100-"+j+".pos");
 				if(!tmpDir.exists()) {
@@ -265,14 +238,13 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes100-"+j);
 				}
 			}
-			
-			for(int j = 0; j < 10; j++) {
+			for(int j = 0; j < 5; j++) {
 				//Gera 300 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes300-"+j+".pos");
 				if(!tmpDir.exists()) {
-					String[] strings = new String[100];
+					String[] strings = new String[300];
 					
-					for(int i = 0; i < 100; i++) {
+					for(int i = 0; i < 300; i++) {
 						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
 						(rand.nextDouble()* Configuration.dimY)+
 						",0.0";
@@ -281,14 +253,13 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes300-"+j);
 				}
 			}
-			
-			for(int j = 0; j < 10; j++) {
+			for(int j = 0; j < 5; j++) {
 				//Gera 500 posi��es aleatorias e as salva em um arquivo
 				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"leachNodes500-"+j+".pos");
 				if(!tmpDir.exists()) {
-					String[] strings = new String[100];
+					String[] strings = new String[500];
 					
-					for(int i = 0; i < 100; i++) {
+					for(int i = 0; i < 500; i++) {
 						strings[i] = (rand.nextDouble()* Configuration.dimX)+","+
 						(rand.nextDouble()* Configuration.dimY)+
 						",0.0";
@@ -297,10 +268,9 @@ public class CustomGlobal extends AbstractCustomGlobal {
 					printOnFile(strings,"leachNodes500-"+j);
 				}
 			}
-			
 			//Gera posi��o da esta��o radio base
 			{
-				tmpDir = new File(PATH_LEACH_DIR+"//radioBase.pos");
+				tmpDir = new File(PATH_LEACH_DIR+SEPARETOR+"radioBase.pos");
 				if(tmpDir.exists()) {
 					tmpDir.delete();			
 				}
@@ -313,7 +283,7 @@ public class CustomGlobal extends AbstractCustomGlobal {
 			
 				printOnFile(strings,"radioBase");
 			}
-
+			
 		}catch (Exception e) {
 			Main.fatalError(e.getStackTrace().toString());
 		}
@@ -355,12 +325,24 @@ public class CustomGlobal extends AbstractCustomGlobal {
 	}
 
 	/** Função que exibe a saida para relatórios da simulação com base no limite */
-	public static void myOutput(String round, String energia, Boolean msgEnviada) {
-			String separador = ";";
-			Tools.appendToOutput(round+separador+energia+separador+(msgEnviada ? "1" : "0")+"\n");
-
-			System.out.println(round+separador+energia+separador+(msgEnviada ? "1" : "0"));
-
+	public static void myOutput(String texto) {
+		
+		File tmpDir = null;
+		tmpDir = new File(PATH_LOG_DIR+SEPARETOR+"leachC500-5.txt");
+		
+		try {
+			if(!tmpDir.exists()) {
+				FileWriter writer = new FileWriter(tmpDir);
+				writer.write(texto+"\n");
+				writer.close();
+			}else {
+				FileWriter writer = new FileWriter(tmpDir,true);
+				writer.write(texto+"\n");
+				writer.close();
+			}
+		}catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 }
